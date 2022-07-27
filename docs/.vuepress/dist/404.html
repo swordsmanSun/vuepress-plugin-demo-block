@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="generator" content="VuePress 2.0.0-beta.49">
+    <style>
+      :root {
+        --c-bg: #fff;
+      }
+      html.dark {
+        --c-bg: #22272e;
+      }
+      html, body {
+        background-color: var(--c-bg);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem('vuepress-color-scheme');
+			const systemDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+			if (userMode === 'dark' || (userMode !== 'light' && systemDarkMode)) {
+				document.documentElement.classList.toggle('dark', true);
+			}
+    </script>
+    <title>vuepress-plugin-demo-code</title><meta name="description" content="">
+    <link rel="modulepreload" href="/assets/app.a5067056.js"><link rel="modulepreload" href="/assets/404.html.608677c2.js"><link rel="modulepreload" href="/assets/404.html.7d858b3d.js"><link rel="prefetch" href="/assets/index.html.3f12c173.js"><link rel="prefetch" href="/assets/index.html.3f967da0.js"><link rel="prefetch" href="/assets/index.html.a8d6a824.js"><link rel="prefetch" href="/assets/index.html.aa7d5559.js"><link rel="prefetch" href="/assets/index.html.973179c4.js"><link rel="prefetch" href="/assets/index.html.f719f2cd.js"><link rel="prefetch" href="/assets/index.html.c1e7c4cf.js"><link rel="prefetch" href="/assets/index.html.ebbb380a.js"><link rel="prefetch" href="/assets/404.fa7fb6cf.js"><link rel="prefetch" href="/assets/Layout.0ba20c43.js"><link rel="prefetch" href="/assets/demo1.dd6ecc63.js"><link rel="prefetch" href="/assets/demo2.6c1f3ca6.js"><link rel="prefetch" href="/assets/Demo.af7c2257.js">
+    <link rel="stylesheet" href="/assets/style.f67c666d.css">
+  </head>
+  <body>
+    <div id="app"><!--[--><div class="theme-container"><main class="page"><div class="theme-default-content"><h1>404</h1><blockquote>How did we get here?</blockquote><a href="/" class="">Take me home</a></div></main></div><!----><!--]--></div>
+    <script type="module" src="/assets/app.a5067056.js" defer></script>
+  </body>
+</html>
