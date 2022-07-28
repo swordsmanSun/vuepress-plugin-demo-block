@@ -1,0 +1,1 @@
+import{_ as e}from"./ui-esm.57ef800b.js";import{_ as o,f as t,o as a,c as _,b as s,w as r,h as n,e as c}from"./app.8363f869.js";const m=c("demo"),d=t({__name:"demo1",setup(f){return(l,i)=>(a(),_("div",null,[s(n(e),null,{default:r(()=>[m]),_:1})]))}});var x=o(d,[["__file","demo1.vue"]]);export{x as default};
