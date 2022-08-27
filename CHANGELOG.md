@@ -1,4 +1,6 @@
 # 2.0.0-beta.50 (2022-08-24)
+### Bug Fixes
+- client the issue that copy was not available when the demo block was closed
 
 ### Features
 - client: change the style of the plugin
