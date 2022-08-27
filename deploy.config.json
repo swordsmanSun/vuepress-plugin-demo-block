@@ -1,0 +1,7 @@
+{
+    "relativePath": "./docs/.vuepress/dist",
+    "branchName": "gh-pages",
+    "files": ".",
+    "info": "#",
+    "remoteUrl": "https://github.com/swordsmanSun/vuepress-plugin-demo-block.git"
+}

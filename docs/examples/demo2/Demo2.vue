@@ -7,7 +7,7 @@
 
 <script setup lang="ts">
 import { DdButton } from "ddong-ui";
-import { Copy, ArrowDown } from "@ddong/icon";
+import { Copy, ArrowDown } from "@ddongui/icon";
 import { ref } from "vue";
 
 const buttonShowClass = ref();

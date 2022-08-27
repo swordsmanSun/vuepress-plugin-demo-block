@@ -1,6 +1,6 @@
 import {
   setupDevtoolsPlugin
-} from "./chunk-B7QBEJFI.js";
+} from "./chunk-OK5KNR6I.js";
 import {
   computed,
   defineComponent,
@@ -18,11 +18,10 @@ import {
   unref,
   watch,
   watchEffect
-} from "./chunk-JHQ32OH4.js";
-import "./chunk-QEG2XCQZ.js";
-import "./chunk-FEFTYQ2P.js";
+} from "./chunk-Z76YP7UL.js";
+import "./chunk-6HOYJSPN.js";
 
-// ../../../node_modules/.pnpm/vue-router@4.1.2_vue@3.2.37/node_modules/vue-router/dist/vue-router.mjs
+// ../../../node_modules/.pnpm/vue-router@4.1.5_vue@3.2.37/node_modules/vue-router/dist/vue-router.mjs
 var isBrowser = typeof window !== "undefined";
 function isESModule(obj) {
   return obj.__esModule || obj[Symbol.toStringTag] === "Module";
@@ -335,15 +334,25 @@ function useHistoryStateNavigation(base) {
     }
   }
   function replace(to, data) {
-    const state = assign({}, history2.state, buildState(historyState.value.back, to, historyState.value.forward, true), data, { position: historyState.value.position });
+    const state = assign({}, history2.state, buildState(
+      historyState.value.back,
+      to,
+      historyState.value.forward,
+      true
+    ), data, { position: historyState.value.position });
     changeLocation(to, state, true);
     currentLocation.value = to;
   }
   function push(to, data) {
-    const currentState = assign({}, historyState.value, history2.state, {
-      forward: to,
-      scroll: computeScrollPosition()
-    });
+    const currentState = assign(
+      {},
+      historyState.value,
+      history2.state,
+      {
+        forward: to,
+        scroll: computeScrollPosition()
+      }
+    );
     if (!history2.state) {
       warn(`history.state seems to have been manually replaced without preserving the necessary values. Make sure to preserve existing history state if you are manually calling history.replaceState:
 
@@ -637,7 +646,7 @@ function tokensToParser(segments, extraOptions) {
           const text = isArray(param) ? param.join("/") : param;
           if (!text) {
             if (optional) {
-              if (segment.length < 2 && segments.length > 1) {
+              if (segment.length < 2) {
                 if (path.endsWith("/"))
                   path = path.slice(0, -1);
                 else
@@ -650,7 +659,7 @@ function tokensToParser(segments, extraOptions) {
         }
       }
     }
-    return path;
+    return path || "/";
   }
   return {
     re,
@@ -949,8 +958,20 @@ function createRouterMatcher(routes, globalOptions) {
         throw createRouterError(1, {
           location: location2
         });
+      if (true) {
+        const invalidParams = Object.keys(location2.params || {}).filter((paramName) => !matcher.keys.find((k) => k.name === paramName));
+        if (invalidParams.length) {
+          warn(`Discarded invalid param(s) "${invalidParams.join('", "')}" when navigating. See https://github.com/vuejs/router/blob/main/packages/router/CHANGELOG.md#414-2022-08-22 for more details.`);
+        }
+      }
       name = matcher.record.name;
-      params = assign(paramsFromLocation(currentLocation.params, matcher.keys.filter((k) => !k.optional).map((k) => k.name)), location2.params);
+      params = assign(
+        paramsFromLocation(
+          currentLocation.params,
+          matcher.keys.filter((k) => !k.optional).map((k) => k.name)
+        ),
+        location2.params && paramsFromLocation(location2.params, matcher.keys.map((k) => k.name))
+      );
       path = matcher.stringify(params);
     } else if ("path" in location2) {
       path = location2.path;
@@ -1050,11 +1071,11 @@ function isSameParam(a, b) {
 function checkSameParams(a, b) {
   for (const key of a.keys) {
     if (!key.optional && !b.keys.find(isSameParam.bind(null, key)))
-      return warn(`Alias "${b.record.path}" and the original record: "${a.record.path}" should have the exact same param named "${key.name}"`);
+      return warn(`Alias "${b.record.path}" and the original record: "${a.record.path}" must have the exact same param named "${key.name}"`);
   }
   for (const key of b.keys) {
     if (!key.optional && !a.keys.find(isSameParam.bind(null, key)))
-      return warn(`Alias "${b.record.path}" and the original record: "${a.record.path}" should have the exact same param named "${key.name}"`);
+      return warn(`Alias "${b.record.path}" and the original record: "${a.record.path}" must have the exact same param named "${key.name}"`);
   }
 }
 function checkChildMissingNameWithEmptyPath(mainNormalizedRecord, parent) {
@@ -1065,7 +1086,7 @@ function checkChildMissingNameWithEmptyPath(mainNormalizedRecord, parent) {
 function checkMissingParamsInAbsolutePath(record, parent) {
   for (const key of parent.keys) {
     if (!record.keys.find(isSameParam.bind(null, key)))
-      return warn(`Absolute path "${record.record.path}" should have the exact same param named "${key.name}" as its parent "${parent.record.path}".`);
+      return warn(`Absolute path "${record.record.path}" must have the exact same param named "${key.name}" as its parent "${parent.record.path}".`);
   }
 }
 function isRecordChildOf(record, parent) {
@@ -1206,9 +1227,12 @@ function onBeforeRouteLeave(leaveGuard) {
     warn("getCurrentInstance() returned null. onBeforeRouteLeave() must be called at the top of a setup function");
     return;
   }
-  const activeRecord = inject(matchedRouteKey, {}).value;
+  const activeRecord = inject(
+    matchedRouteKey,
+    {}
+  ).value;
   if (!activeRecord) {
-    warn("No active route record was found when calling `onBeforeRouteLeave()`. Make sure you call this function inside of a component child of <router-view>. Maybe you called it inside of App.vue?");
+    warn("No active route record was found when calling `onBeforeRouteLeave()`. Make sure you call this function inside a component child of <router-view>. Maybe you called it inside of App.vue?");
     return;
   }
   registerGuard(activeRecord, "leaveGuards", leaveGuard);
@@ -1218,9 +1242,12 @@ function onBeforeRouteUpdate(updateGuard) {
     warn("getCurrentInstance() returned null. onBeforeRouteUpdate() must be called at the top of a setup function");
     return;
   }
-  const activeRecord = inject(matchedRouteKey, {}).value;
+  const activeRecord = inject(
+    matchedRouteKey,
+    {}
+  ).value;
   if (!activeRecord) {
-    warn("No active route record was found when calling `onBeforeRouteUpdate()`. Make sure you call this function inside of a component child of <router-view>. Maybe you called it inside of App.vue?");
+    warn("No active route record was found when calling `onBeforeRouteUpdate()`. Make sure you call this function inside a component child of <router-view>. Maybe you called it inside of App.vue?");
     return;
   }
   registerGuard(activeRecord, "updateGuards", updateGuard);
@@ -1229,12 +1256,12 @@ function guardToPromiseFn(guard, to, from, record, name) {
   const enterCallbackArray = record && (record.enterCallbacks[name] = record.enterCallbacks[name] || []);
   return () => new Promise((resolve, reject) => {
     const next = (valid) => {
-      if (valid === false)
+      if (valid === false) {
         reject(createRouterError(4, {
           from,
           to
         }));
-      else if (valid instanceof Error) {
+      } else if (valid instanceof Error) {
         reject(valid);
       } else if (isRouteLocation(valid)) {
         reject(createRouterError(2, {
@@ -1242,8 +1269,9 @@ function guardToPromiseFn(guard, to, from, record, name) {
           to: valid
         }));
       } else {
-        if (enterCallbackArray && record.enterCallbacks[name] === enterCallbackArray && typeof valid === "function")
+        if (enterCallbackArray && record.enterCallbacks[name] === enterCallbackArray && typeof valid === "function") {
           enterCallbackArray.push(valid);
+        }
         resolve();
       }
     };
@@ -1370,7 +1398,9 @@ function useLink(props) {
   const isExactActive = computed(() => activeRecordIndex.value > -1 && activeRecordIndex.value === currentRoute.matched.length - 1 && isSameRouteLocationParams(currentRoute.params, route.value.params));
   function navigate(e = {}) {
     if (guardEvent(e)) {
-      return router[unref(props.replace) ? "replace" : "push"](unref(props.to)).catch(noop);
+      return router[unref(props.replace) ? "replace" : "push"](
+        unref(props.to)
+      ).catch(noop);
     }
     return Promise.resolve();
   }
@@ -1518,13 +1548,13 @@ var RouterViewImpl = defineComponent({
     }, { flush: "post" });
     return () => {
       const route = routeToDisplay.value;
-      const matchedRoute = matchedRouteRef.value;
-      const ViewComponent = matchedRoute && matchedRoute.components[props.name];
       const currentName = props.name;
+      const matchedRoute = matchedRouteRef.value;
+      const ViewComponent = matchedRoute && matchedRoute.components[currentName];
       if (!ViewComponent) {
         return normalizeSlot(slots.default, { Component: ViewComponent, route });
       }
-      const routePropsOption = matchedRoute.props[props.name];
+      const routePropsOption = matchedRoute.props[currentName];
       const routeProps = routePropsOption ? routePropsOption === true ? route.params : typeof routePropsOption === "function" ? routePropsOption(route) : routePropsOption : null;
       const onVnodeUnmounted = (vnode) => {
         if (vnode.component.isUnmounted) {
@@ -2111,17 +2141,25 @@ ${JSON.stringify(newTargetLocation, null, 2)}
     const replace2 = to.replace === true;
     const shouldRedirect = handleRedirectRecord(targetLocation);
     if (shouldRedirect)
-      return pushWithRedirect(assign(locationAsObject(shouldRedirect), {
-        state: data,
-        force,
-        replace: replace2
-      }), redirectedFrom || targetLocation);
+      return pushWithRedirect(
+        assign(locationAsObject(shouldRedirect), {
+          state: typeof shouldRedirect === "object" ? assign({}, data, shouldRedirect.state) : data,
+          force,
+          replace: replace2
+        }),
+        redirectedFrom || targetLocation
+      );
     const toLocation = targetLocation;
     toLocation.redirectedFrom = redirectedFrom;
     let failure;
     if (!force && isSameRouteLocation(stringifyQuery$1, from, targetLocation)) {
       failure = createRouterError(16, { to: toLocation, from });
-      handleScroll(from, from, true, false);
+      handleScroll(
+        from,
+        from,
+        true,
+        false
+      );
     }
     return (failure ? Promise.resolve(failure) : navigate(toLocation, from)).catch((error) => isNavigationFailure(error) ? isNavigationFailure(error, 2) ? error : markAsReady(error) : triggerError(error, toLocation, from)).then((failure2) => {
       if (failure2) {
@@ -2130,11 +2168,15 @@ ${JSON.stringify(newTargetLocation, null, 2)}
             warn(`Detected an infinite redirection in a navigation guard when going from "${from.fullPath}" to "${toLocation.fullPath}". Aborting to avoid a Stack Overflow. This will break in production if not fixed.`);
             return Promise.reject(new Error("Infinite redirect in navigation guard"));
           }
-          return pushWithRedirect(assign(locationAsObject(failure2.to), {
-            state: data,
-            force,
-            replace: replace2
-          }), redirectedFrom || toLocation);
+          return pushWithRedirect(
+            assign({
+              replace: replace2
+            }, locationAsObject(failure2.to), {
+              state: typeof failure2.to === "object" ? assign({}, data, failure2.to.state) : data,
+              force
+            }),
+            redirectedFrom || toLocation
+          );
         }
       } else {
         failure2 = finalizeNavigation(toLocation, from, true, replace2, data);
@@ -2247,20 +2289,28 @@ ${JSON.stringify(newTargetLocation, null, 2)}
           return error;
         }
         if (isNavigationFailure(error, 2)) {
-          pushWithRedirect(error.to, toLocation).then((failure) => {
+          pushWithRedirect(
+            error.to,
+            toLocation
+          ).then((failure) => {
             if (isNavigationFailure(failure, 4 | 16) && !info.delta && info.type === NavigationType.pop) {
               routerHistory.go(-1, false);
             }
           }).catch(noop);
           return Promise.reject();
         }
-        if (info.delta)
+        if (info.delta) {
           routerHistory.go(-info.delta, false);
+        }
         return triggerError(error, toLocation, from);
       }).then((failure) => {
-        failure = failure || finalizeNavigation(toLocation, from, false);
+        failure = failure || finalizeNavigation(
+          toLocation,
+          from,
+          false
+        );
         if (failure) {
-          if (info.delta) {
+          if (info.delta && !isNavigationFailure(failure, 8)) {
             routerHistory.go(-info.delta, false);
           } else if (info.type === NavigationType.pop && isNavigationFailure(failure, 4 | 16)) {
             routerHistory.go(-1, false);
@@ -2432,7 +2482,7 @@ export {
   viewDepthKey
 };
 /*!
-  * vue-router v4.1.2
+  * vue-router v4.1.5
   * (c) 2022 Eduardo San Martin Morote
   * @license MIT
   */

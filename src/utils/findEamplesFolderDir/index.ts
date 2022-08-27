@@ -14,7 +14,7 @@ export default function FindExamplesFolderDir(dir: string): string {
 function findDocsFolderDir(dir: string): string {
     const res = dir.match(/(.*docs)/i);
     if (res) return res[0];
-    throw Error("can not find docs folder, does it exist?");
+    throw Error("can not find docs folder, does it exist? you can specify the example directory");
 }
 /**
  * 从当前绝对路径找docs

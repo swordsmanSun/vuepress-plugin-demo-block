@@ -1,9 +1,10 @@
 import { defaultTheme, defineUserConfig } from "vuepress";
-import { resolve } from "path";
-import vuepressPluginDemoCode from "../../";
+import path from "path"
+import { demoBlockPlugin } from "../../dist/index.mjs";
 
 export default defineUserConfig({
-    plugins: [vuepressPluginDemoCode({ examplesPath: resolve(__dirname, "../examples") })],
+    base: "/vuepress-plugin-demo-block/",
+    plugins: [demoBlockPlugin({ examplesPath: path.resolve(__dirname, "../examples") })],
     title: "vuepress-plugin-demo-code",
     theme: defaultTheme({
         navbar: [{ text: "指南", link: "/guide/install", activeMatch: "/guide/" }],

@@ -195,7 +195,9 @@ var toRawType = (value) => {
 };
 var isPlainObject = (val) => toTypeString(val) === "[object Object]";
 var isIntegerKey = (key) => isString(key) && key !== "NaN" && key[0] !== "-" && "" + parseInt(key, 10) === key;
-var isReservedProp = makeMap(",key,ref,ref_for,ref_key,onVnodeBeforeMount,onVnodeMounted,onVnodeBeforeUpdate,onVnodeUpdated,onVnodeBeforeUnmount,onVnodeUnmounted");
+var isReservedProp = makeMap(
+  ",key,ref,ref_for,ref_key,onVnodeBeforeMount,onVnodeMounted,onVnodeBeforeUpdate,onVnodeUpdated,onVnodeBeforeUnmount,onVnodeUnmounted"
+);
 var isBuiltInDirective = makeMap("bind,cloak,else-if,else,for,html,if,model,on,once,pre,show,slot,text,memo");
 var cacheStringFunction = (fn) => {
   const cache = /* @__PURE__ */ Object.create(null);
@@ -279,4 +281,4 @@ export {
   toNumber,
   getGlobalThis
 };
-//# sourceMappingURL=chunk-QEG2XCQZ.js.map
+//# sourceMappingURL=chunk-6HOYJSPN.js.map

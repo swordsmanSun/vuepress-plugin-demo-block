@@ -1,6 +1,6 @@
 import Prism from "prismjs";
 import prism from "prismjs";
-import loadLanguages from "prismjs/components/";
+import loadLanguages from "prismjs/components/index.js";
 
 export default function Highlight(code: string) {
     loadLanguages(["markup"]);

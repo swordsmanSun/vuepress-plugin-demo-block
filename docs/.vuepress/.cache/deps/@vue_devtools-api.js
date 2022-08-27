@@ -2,8 +2,7 @@ import {
   isPerformanceSupported,
   now,
   setupDevtoolsPlugin
-} from "./chunk-B7QBEJFI.js";
-import "./chunk-FEFTYQ2P.js";
+} from "./chunk-OK5KNR6I.js";
 export {
   isPerformanceSupported,
   now,

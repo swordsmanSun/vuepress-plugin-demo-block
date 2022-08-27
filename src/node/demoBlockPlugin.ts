@@ -1,3 +1,5 @@
+import { dirname } from 'path'
+import { fileURLToPath } from 'url'
 import { fs, path } from "@vuepress/utils";
 import { Plugin } from "@vuepress/core";
 import Token from "markdown-it/lib/token";
@@ -8,7 +10,7 @@ import TransComponentName from "../utils/transComponentName";
 import Highlight from "../utils/highlight";
 import MarkdownIt from "markdown-it";
 
-function DemoBlockPlugin(option?: Option): Plugin {
+export default function DemoBlockPlugin(option?: Option): Plugin {
     return (app) => {
         const componentsRegister = new ComponentsRegister(app);
         return {
@@ -19,7 +21,7 @@ function DemoBlockPlugin(option?: Option): Plugin {
             },
 
             onInitialized() {
-                componentsRegister.Push({ name: "demo", path: path.resolve(__dirname, "./public/Demo.vue") });
+                componentsRegister.Push({ name: "demo", path: path.resolve(dirname(fileURLToPath(import.meta.url)), "./public/Demo.vue") });
             },
 
             extendsMarkdown: (md) => {
@@ -27,9 +29,9 @@ function DemoBlockPlugin(option?: Option): Plugin {
                     validate: function (params: string) {
                         /* console.log(params);
                         console.log(params.trim());
-                        console.log(params.trim().match(/^demo\s+(.*)$/)); */
+                        console.log(params.trim().match(/^demo\s*(.*)$/)); */
                         // 匹配demo的开标签和闭合标签
-                        return params.trim().match(/^demo\s+(.*)$/);
+                        return params.trim().match(/^demo\s*(.*)$/);
                     },
 
                     render: function (tokens: Token[], idx: number) {
@@ -40,8 +42,8 @@ function DemoBlockPlugin(option?: Option): Plugin {
                         const m = tokens[idx].info.trim().match(/^demo\s+(.*)$/);
 
                         if (tokens[idx].nesting === 1) {
-                            // opening tag
-                            const info = m![1];
+                            // opening tag，
+                            const info = m && m[1] || "";
                             // 预注册所有demo组件
                             const demoName = TransComponentName(tokens[idx + 2].content);
                             const demoPath = path.resolve(
@@ -53,8 +55,9 @@ function DemoBlockPlugin(option?: Option): Plugin {
                             const demoCode = fs.readFileSync(demoPath).toString();
                             return `<demo
                                     component=${demoName}
-                                    code=${encodeURIComponent(Highlight(demoCode))}
-                                    info=${encodeURIComponent(MarkdownIt().render(info))}>`;
+                                    code="${encodeURIComponent(demoCode)}"
+                                    codeHighlight="${encodeURIComponent(Highlight(demoCode))}"
+                                    info="${encodeURIComponent(MarkdownIt().render(info))}">`;
                         } else {
                             // closing tag
                             return "</demo>\n";
@@ -65,8 +68,6 @@ function DemoBlockPlugin(option?: Option): Plugin {
         };
     };
 }
-
-export default DemoBlockPlugin;
 
 type Option = {
     examplesPath?: string;
