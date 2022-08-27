@@ -18,7 +18,7 @@
         "dev:docs": "vuepress dev docs",
         "build:docs": "vuepress build docs",
         "build": "tsup",
-        "deploy:docs": "node deploy.mjs"
+        "deploy": "pnpm deploy"
     },
     "keywords": [
         "vuepress-plugin",

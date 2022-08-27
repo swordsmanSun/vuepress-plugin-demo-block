@@ -1,3 +1,7 @@
 node_modules
 # Bundle
-lib
+dist
+
+.cache
+.temp
+dist
