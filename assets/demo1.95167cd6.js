@@ -1,0 +1,1 @@
+import{q as e}from"./ddong-ui.esm.e30e7e43.js";import{f as o,o as t,c as a,b as s,w as _,u as n,e as r,_ as c}from"./app.94fd53be.js";const m=r("demo"),d=o({__name:"demo1",setup(f){return(l,u)=>(t(),a("div",null,[s(n(e),null,{default:_(()=>[m]),_:1})]))}}),x=c(d,[["__file","demo1.vue"]]);export{x as default};

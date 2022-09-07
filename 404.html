@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="generator" content="VuePress 2.0.0-beta.51">
+    <style>
+      :root {
+        --c-bg: #fff;
+      }
+      html.dark {
+        --c-bg: #22272e;
+      }
+      html, body {
+        background-color: var(--c-bg);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem('vuepress-color-scheme');
+			const systemDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+			if (userMode === 'dark' || (userMode !== 'light' && systemDarkMode)) {
+				document.documentElement.classList.toggle('dark', true);
+			}
+    </script>
+    <title>vuepress-plugin-demo-code</title><meta name="description" content="">
+    <link rel="modulepreload" href="/vuepress-plugin-demo-block/assets/app.94fd53be.js"><link rel="modulepreload" href="/vuepress-plugin-demo-block/assets/404.html.cf17a864.js"><link rel="modulepreload" href="/vuepress-plugin-demo-block/assets/404.html.d2dc3323.js"><link rel="prefetch" href="/vuepress-plugin-demo-block/assets/index.html.6c04e4d9.js"><link rel="prefetch" href="/vuepress-plugin-demo-block/assets/index.html.f8b2a9fd.js"><link rel="prefetch" href="/vuepress-plugin-demo-block/assets/index.html.1ca4df1e.js"><link rel="prefetch" href="/vuepress-plugin-demo-block/assets/index.html.2f767377.js"><link rel="prefetch" href="/vuepress-plugin-demo-block/assets/index.html.51b925d6.js"><link rel="prefetch" href="/vuepress-plugin-demo-block/assets/index.html.1b6a503e.js"><link rel="prefetch" href="/vuepress-plugin-demo-block/assets/index.html.89f9bd77.js"><link rel="prefetch" href="/vuepress-plugin-demo-block/assets/index.html.745d66ae.js"><link rel="prefetch" href="/vuepress-plugin-demo-block/assets/demo1.95167cd6.js"><link rel="prefetch" href="/vuepress-plugin-demo-block/assets/demo2.cda6533b.js"><link rel="prefetch" href="/vuepress-plugin-demo-block/assets/demo3.c8c5278a.js"><link rel="prefetch" href="/vuepress-plugin-demo-block/assets/Demo.cffb3763.js">
+    <link rel="stylesheet" href="/vuepress-plugin-demo-block/assets/style.9286cca2.css">
+  </head>
+  <body>
+    <div id="app"><!--[--><div class="theme-container"><main class="page"><div class="theme-default-content"><h1>404</h1><blockquote>How did we get here?</blockquote><a href="/vuepress-plugin-demo-block/" class="">Take me home</a></div></main></div><!----><!--]--></div>
+    <script type="module" src="/vuepress-plugin-demo-block/assets/app.94fd53be.js" defer></script>
+  </body>
+</html>
