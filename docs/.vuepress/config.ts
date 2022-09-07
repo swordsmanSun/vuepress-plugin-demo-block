@@ -1,4 +1,4 @@
-import { defaultTheme, defineUserConfig } from "vuepress";
+import { defaultTheme, defineUserConfig, viteBundler } from "vuepress";
 import path from "path"
 import { demoBlockPlugin } from "../../dist/index.mjs";
 
@@ -26,4 +26,11 @@ export default defineUserConfig({
         repoLabel: "GitHub",
         repo: "https://github.com/swordsmanSun/vuepress-plugin-demo-block",
     }),
+    bundler: viteBundler({
+        viteOptions: {
+            build: {
+                /* sourcemap: true */
+            }
+        }
+    })
 });

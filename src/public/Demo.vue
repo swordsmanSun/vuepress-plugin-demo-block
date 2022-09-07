@@ -1,6 +1,6 @@
 <template>
-    <p class="demo-info" v-html="info" v-if="info"></p>
     <div class="demo" :class="demoClass">
+        <p class="demo-info" v-html="info" v-if="info"></p>
         <div class="demo-example">
             <component :is="component"></component>
         </div>
@@ -8,7 +8,8 @@
             <header>
                 <dd-button class="button-copy" @click="copy" :icon="Copy" animation="first" size="small">复制</dd-button>
                 <dd-button :class="buttonShowClass" class="button-show" @click="show"
-                    :icon="{ value: ArrowDown, color: 'primary' }" plain animation="second" size="small">显示代码</dd-button>
+                    :icon="{ value: ArrowDown, color: 'primary' }" plain animation="second" size="small">显示代码
+                </dd-button>
             </header>
             <div class="demo-code-container-code" ref="demoCodeContainerCode">
                 <article v-html="codeHighlight" ref="article" language="vue"></article>
@@ -24,7 +25,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import { GetSingle, DebounceImmediately } from "./Demo";
-import { DdButton, DdMessage, DdScrollbar} from "ddong-ui";
+import { DdButton, DdMessage, DdScrollbar } from "ddong-ui";
 import { Copy, ArrowDown } from "@ddongui/icon";
 import "ddong-ui/es/style.css";
 
@@ -115,7 +116,7 @@ html {
     border-radius: 1em;
 
     .demo-example {
-        padding: 1em 0;
+        padding: 1em .2em;
     }
 
     .demo-code {
@@ -194,10 +195,6 @@ html {
                 bottom: 0;
             }
         }
-    }
-
-    >p {
-        display: none;
     }
 
     &.closed {

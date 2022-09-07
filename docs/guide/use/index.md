@@ -15,24 +15,36 @@ export default defineUserConfig({
 
 ## **如何时使用?**
 
-1. 在您的docs目录下创建 examples 文件夹 *(插件会扫描此文件夹进行组件注册, 若报错请配置example路径)*
+1. 在您的docs目录下创建 examples 文件夹 *(插件会扫描此文件夹进行组件注册, 若报错请自定义配置example路径)*
 2. 在 examples 文件夹内再创建文件夹, 然后创建vue组件 *(插件会将以``文件夹名-vue文件名``作为组件名进行注册)*
 3. 在您的md文件内使用
 
-**Demo1存放位置**
+**vue组件存放位置**
 
 ```bash
 --docs
   --examples
     --demo1
       --Demo1.vue
+    --demo2
+      --demo2.vue
+    --demo3
+      --demo3.vue
 ```
 
-**使用**
+**在markdown文件中使用**
 
 ``` md
-::: demo [info]
+::: demo
 demo1/demo1
+:::
+
+::: demo
+demo2/demo2
+:::
+
+::: demo 以下是  `示例3`
+demo3/demo3
 :::
 ```
 

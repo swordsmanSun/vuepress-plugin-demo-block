@@ -8,7 +8,6 @@ import findEamplesFolderDir from "../utils/findEamplesFolderDir";
 import { ComponentsRegister } from "./ComponentsRegister";
 import TransComponentName from "../utils/transComponentName";
 import Highlight from "../utils/highlight";
-import MarkdownIt from "markdown-it";
 
 export default function DemoBlockPlugin(option?: Option): Plugin {
     return (app) => {
@@ -57,7 +56,7 @@ export default function DemoBlockPlugin(option?: Option): Plugin {
                                     component=${demoName}
                                     code="${encodeURIComponent(demoCode)}"
                                     codeHighlight="${encodeURIComponent(Highlight(demoCode))}"
-                                    info="${encodeURIComponent(MarkdownIt().render(info))}">`;
+                                    info="${encodeURIComponent(md.render(info))}">`;
                         } else {
                             // closing tag
                             return "</demo>\n";
