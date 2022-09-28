@@ -53,7 +53,7 @@ export default function DemoBlockPlugin(option?: Option): Plugin {
                             // 代码高亮
                             const demoCode = fs.readFileSync(demoPath).toString();
                             return `<demo
-                                    component=${demoName}
+                                    component="${demoName}"
                                     code="${encodeURIComponent(demoCode)}"
                                     codeHighlight="${encodeURIComponent(Highlight(demoCode))}"
                                     info="${encodeURIComponent(md.render(info))}">`;

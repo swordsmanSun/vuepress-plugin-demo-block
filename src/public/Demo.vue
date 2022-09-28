@@ -1,6 +1,6 @@
 <template>
     <div class="demo" :class="demoClass">
-        <p class="demo-info" v-html="info" v-if="info"></p>
+        <div class="demo-info" v-html="info" v-if="info"></div>
         <div class="demo-example">
             <component :is="component"></component>
         </div>
@@ -36,7 +36,7 @@ const props = defineProps<{
     info: string;
 }>();
 /* info */
-const info = computed(() => decodeURIComponent(props.info));
+const info = decodeURIComponent(props.info);
 /* code */
 const codeHighlight = computed(() => decodeURIComponent(props.codeHighlight));
 const article = ref<HTMLElement>();
@@ -100,113 +100,9 @@ const show = (function () {
 </script>
 
 <style lang="less">
-@fill-header: rgb(32, 35, 42);
-@fill-article: rgb(40, 44, 52);
-@duration: 0.2s;
-
-html {
-    scroll-behavior: smooth;
-}
-
 .demo {
     --article-height: v-bind(height + "px");
 }
 
-.demo {
-    border-radius: 1em;
-
-    .demo-example {
-        padding: 1em .2em;
-    }
-
-    .demo-code {
-        header {
-            display: flex;
-            align-items: center;
-            gap: 1em;
-            padding: 0.5em;
-            border-radius: 1em 1em 0 0;
-            background-color: @fill-header;
-            position: sticky;
-            top: 57.6px;
-            z-index: 2;
-
-            .button-show {
-                &.myActive {
-                    .dd-icon {
-                        i {
-                            svg {
-                                transform: rotate(180deg);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        .demo-code-container-code {
-            position: relative;
-
-            article {
-                height: var(--article-height);
-
-                &::-webkit-scrollbar {
-                    display: none;
-                }
-
-                scrollbar-width: none;
-                overflow-y: hidden;
-                border-radius: 0 0 1em 1em;
-                background-color: @fill-article;
-                transition: height @duration ease-out;
-
-                pre {
-                    outline: none;
-                    overflow: unset;
-                    padding: 1em;
-                    margin: 0.2em 0.4em;
-
-                    code {
-                        color: rgb(218, 232, 232);
-
-                        .token.tag {
-                            color: rgb(80, 142, 193);
-                        }
-                    }
-                }
-
-                &::before {
-                    content: attr(language);
-                    position: absolute;
-                    color: rgb(218, 232, 232);
-                    line-height: 0;
-                    top: 1em;
-                    right: 1em;
-                }
-            }
-
-            .demo-code-container-footer {
-                float: left;
-                width: 100%;
-                padding: 0 1em;
-                box-sizing: border-box;
-
-                position: sticky;
-                bottom: 0;
-            }
-        }
-    }
-
-    &.closed {
-        overflow: hidden;
-
-        .demo-code-container-code {
-            overflow: hidden;
-        }
-
-        .demo-code-container-footer {
-            display: none;
-        }
-    }
-}
+@import "./Demo.less";
 </style>
